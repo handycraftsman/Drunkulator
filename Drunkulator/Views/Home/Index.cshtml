@@ -1,0 +1,19 @@
+﻿@model InitialInfo
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <form asp-action="Index" method="post">
+        <div class="form-group">
+            <label asp-for="MembersCount">Number of participants</label>
+            <input asp-for="MembersCount" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="DishesCount">Number of dishes</label>
+            <input asp-for="DishesCount" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Create calculation</button>
+    </form>
+</div>
