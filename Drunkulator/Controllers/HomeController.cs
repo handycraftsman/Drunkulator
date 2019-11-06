@@ -21,7 +21,7 @@ namespace Drunkulator.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(new InitialInfo());
         }
         
         [HttpPost]
@@ -34,7 +34,14 @@ namespace Drunkulator.Controllers
         {
             //Построить по начальному объекту формы ввода
             //Инициализировать объект Booze. Свойство booze. Инициализация в контейнере.
+            //Возвращает объект с параметрами
             return View(InitInfo);
+        }
+        [HttpPost]
+        public IActionResult GetList()
+        {
+            //Принимает объект с параметрами, инициализирует объект.
+            return RedirectToAction(nameof(GetList), InitInfo);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
