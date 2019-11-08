@@ -1,7 +1,39 @@
-﻿
+﻿@model Boose
 @{
     ViewData["Title"] = "GetDigits";
 }
 
 <h1>GetDigits</h1>
+<div class="text-center">
+    <h1 class="display-4">Enter Data</h1>
+    <form method="post" asp-controller="Home" asp-action="GetDigits_post">
+
+        <table class="table table-sm table-bordered table-striped">
+            <caption>Enter data</caption>
+            <tr>
+                <th></th>
+                @foreach (string member in Model.Members)
+                {
+                    <th>Member</th>
+                }
+            </tr>
+            @foreach (Dish d in Model.Dishes)
+            {
+                <tr>
+                    <td>
+                        @d.Name
+                    </td>
+                    @foreach (string m in Model.Members)
+                    {
+                        <td>
+                            @d.Partakers[m].Cash
+                            @d.Partakers[m].Partaiking
+                        </td>
+                    }
+                </tr>
+            }
+        </table>
+        <button type="submit" class="btn btn-primary">OK</button>
+    </form>
+</div>
 

@@ -13,7 +13,7 @@ namespace Drunkulator.Models.ViewModels
 
     public class InitialLists
     {
-        public List<string> MembersList { get; set; }
-        public List<string> DishesList { get; set; }
+        public string[] MembersList { get; set; }
+        public string[] DishesList { get; set; }
     }
 }

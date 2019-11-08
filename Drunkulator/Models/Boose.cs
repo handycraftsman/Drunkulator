@@ -16,6 +16,11 @@ namespace Drunkulator.Models
                 Dishes.Add(new Dish(name, members));
             }
         }
+        public Boose()
+        {
+            Members = new string[0];
+            Dishes = new List<Dish>();
+        }
         public string[] Members { get; set; }
         public List<Dish> Dishes { get; set; }
         public Dictionary<string, int> Result { get; set; }

@@ -5,25 +5,21 @@
 
 <div class="text-center">
     <h1 class="display-4">Data</h1>
-    <div>Members @Model.MembersList.Capacity</div>
-    <div>Members @Model.DishesList.Capacity</div>
-
-    <h2 class="text-capitalize">List of drinkers:</h2>
-
-
     <form method="post" asp-controller="Home" asp-action="GetList">
-
-        @for (int i = 0; i < Model.MembersList.Capacity; i++)
+        <h2 class="text-capitalize">List of drinkers:</h2>
+        @for (int i = 0; i < Model.MembersList.Length; i++)
         {
             <div class="form-group">
-                <label> @(i + 1) </label>
-                <input class="form-control" asp-for="MembersList[i]" />
+                <label> @(i + 1) </label><input class="form-control" asp-for="MembersList[i]" />
             </div>
         }
-        <button type="submit" class="btn btn-primary">Add</button>
-        <a class="btn btn-primary" href="/Home/Index">Cancel</a>
+        <h2 class="text-capitalize">List of dishes:</h2>
+        @for (int i = 0; i < Model.DishesList.Length; i++)
+        {
+            <div class="form-group">
+                <label> @(i + 1) </label><input class="form-control" asp-for="DishesList[i]" />
+            </div>
+        }
+        <button type="submit" class="btn btn-primary">OK</button>
     </form>
-
-
-    <h2 class="text-capitalize">List of dishes:</h2>
 </div>

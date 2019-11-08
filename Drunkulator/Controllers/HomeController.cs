@@ -34,28 +34,23 @@ namespace Drunkulator.Controllers
         {
             InitialLists InitList = new InitialLists()
             {
-                DishesList = new List<string>(InitInfo.DishesCount),
-                MembersList = new List<string>(InitInfo.MembersCount)
+                DishesList  = new string[InitInfo.DishesCount],
+                MembersList = new string[InitInfo.MembersCount]
             };
-            //InitList.MembersList.Add("");
-            //InitList.MembersList.Add("");
-            //InitList.MembersList.Add("");
-            //InitList.DishesList.Add("");
-            //InitList.DishesList.Add("");
-            //InitList.DishesList.Add("");
-
             return View(InitList);
         }
 
         [HttpPost]
         public IActionResult GetList(InitialLists InitLists)
         {
-            return RedirectToAction(nameof(GetDigits),new Boose(InitLists.MembersList.ToArray(), InitLists.MembersList.ToArray()));
+            Boose BS = new Boose(InitLists.MembersList, InitLists.DishesList);
+            return RedirectToAction(nameof(GetDigits),BS);
         }
         
         [HttpGet]
         public IActionResult GetDigits(Boose BS)
         {
+            string a = BS.ToString();
             return View(BS);
         }
         [HttpPost]
