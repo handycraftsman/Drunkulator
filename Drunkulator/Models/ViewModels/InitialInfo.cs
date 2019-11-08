@@ -10,4 +10,10 @@ namespace Drunkulator.Models.ViewModels
         public int MembersCount { get; set; }
         public int DishesCount { get; set; }
     }
+
+    public class InitialLists
+    {
+        public List<string> MembersList { get; set; }
+        public List<string> DishesList { get; set; }
+    }
 }

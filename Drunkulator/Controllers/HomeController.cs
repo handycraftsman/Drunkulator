@@ -23,7 +23,7 @@ namespace Drunkulator.Controllers
         {
             return View(new InitialInfo());
         }
-        
+
         [HttpPost]
         public IActionResult Index(InitialInfo InitInfo)
         {
@@ -32,17 +32,44 @@ namespace Drunkulator.Controllers
 
         public IActionResult GetList(InitialInfo InitInfo)
         {
-            //Построить по начальному объекту формы ввода
-            //Инициализировать объект Booze. Свойство booze. Инициализация в контейнере.
-            //Возвращает объект с параметрами
-            return View(InitInfo);
+            InitialLists InitList = new InitialLists()
+            {
+                DishesList = new List<string>(InitInfo.DishesCount),
+                MembersList = new List<string>(InitInfo.MembersCount)
+            };
+            //InitList.MembersList.Add("");
+            //InitList.MembersList.Add("");
+            //InitList.MembersList.Add("");
+            //InitList.DishesList.Add("");
+            //InitList.DishesList.Add("");
+            //InitList.DishesList.Add("");
+
+            return View(InitList);
+        }
+
+        [HttpPost]
+        public IActionResult GetList(InitialLists InitLists)
+        {
+            return RedirectToAction(nameof(GetDigits),new Boose(InitLists.MembersList.ToArray(), InitLists.MembersList.ToArray()));
+        }
+        
+        [HttpGet]
+        public IActionResult GetDigits(Boose BS)
+        {
+            return View(BS);
         }
         [HttpPost]
-        public IActionResult GetList()
+        public IActionResult GetDigits_Post(Boose BS)
         {
-            //Принимает объект с параметрами, инициализирует объект.
-            return RedirectToAction(nameof(GetList), InitInfo);
+            BS.Calcultate();
+            return RedirectToAction(nameof(GetDigits), BS);
         }
+
+        public IActionResult Result(Boose BS)
+        {
+            return View();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
