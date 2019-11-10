@@ -20,6 +20,8 @@ namespace Drunkulator.Models
         {
             Members = new string[0];
             Dishes = new List<Dish>();
+            Dictionary<string, int> Result = new Dictionary<string, int>();
+            int Cost = 0;
         }
         public string[] Members { get; set; }
         public List<Dish> Dishes { get; set; }

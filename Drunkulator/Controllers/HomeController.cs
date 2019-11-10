@@ -19,6 +19,7 @@ namespace Drunkulator.Controllers
             _logger = logger;
         }
 
+        private Boose BS;
         public IActionResult Index()
         {
             return View(new InitialInfo());
@@ -43,20 +44,22 @@ namespace Drunkulator.Controllers
         [HttpPost]
         public IActionResult GetList(InitialLists InitLists)
         {
-            Boose BS = new Boose(InitLists.MembersList, InitLists.DishesList);
-            return RedirectToAction(nameof(GetDigits),BS);
+            BS = new Boose(InitLists.MembersList, InitLists.DishesList);
+            //Serialize to session
+            return RedirectToAction(nameof(GetDigits));
         }
         
-        [HttpGet]
-        public IActionResult GetDigits(Boose BS)
+        public IActionResult GetDigits()
         {
-            string a = BS.ToString();
+            var a = BS.ToString();
+            //Get from session
             return View(BS);
         }
         [HttpPost]
         public IActionResult GetDigits_Post(Boose BS)
         {
             BS.Calcultate();
+            //Serialize to session
             return RedirectToAction(nameof(GetDigits), BS);
         }
 
