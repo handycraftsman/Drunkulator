@@ -9,26 +9,30 @@
     <form method="post" asp-controller="Home" asp-action="GetDigits_post">
 
         <table class="table table-sm table-bordered table-striped">
-            <caption>Enter data</caption>
+            <caption>Enter data. Cost: @Model.Cost</caption>
             <tr>
                 <th></th>
-                @foreach (string member in Model.Members)
+                @for (int mi = 0; mi < Model.Members.Length; mi++)
                 {
-                    <th>Member</th>
+                    <th>
+                        <input asp-for="Members[mi]" class="form-control" ReadOnly="readonly"/>
+                    </th>
+
                 }
             </tr>
             @foreach (Dish d in Model.Dishes)
             {
                 <tr>
                     <td>
-                        @d.Name
+                        <input asp-for="@d.Name" class="form-control" ReadOnly="readonly"/>
                     </td>
                     @foreach (string m in Model.Members)
                     {
-                        <td>
-                            @d.Partakers[m].Cash
-                            @d.Partakers[m].Partaiking
-                        </td>
+                <td>
+                    <input asp-for="@d.Partakers[m].Cash" class="form-control" />
+                    <input asp-for="@d.Partakers[m].Partaiking" class="form-control" />
+                    <input asp-for="@d.Partakers[m].Delta" class="form-control" />
+                </td>
                     }
                 </tr>
             }

@@ -19,12 +19,12 @@ namespace Drunkulator.Controllers
             _logger = logger;
         }
 
-        private Boose BS;
+        //private Boose BS;
         public IActionResult Index()
         {
             return View(new InitialInfo());
         }
-
+        //Получаем количество гостей и блюд
         [HttpPost]
         public IActionResult Index(InitialInfo InitInfo)
         {
@@ -44,28 +44,27 @@ namespace Drunkulator.Controllers
         [HttpPost]
         public IActionResult GetList(InitialLists InitLists)
         {
-            BS = new Boose(InitLists.MembersList, InitLists.DishesList);
-            //Serialize to session
-            return RedirectToAction(nameof(GetDigits));
+            Boose BS = new Boose(InitLists.MembersList, InitLists.DishesList);
+            //return RedirectToAction(nameof(GetDigits),BS);
+            return View(nameof(GetDigits), BS);
         }
         
-        public IActionResult GetDigits()
+        public IActionResult GetDigits(Boose BS)
         {
             var a = BS.ToString();
-            //Get from session
             return View(BS);
         }
         [HttpPost]
         public IActionResult GetDigits_Post(Boose BS)
         {
             BS.Calcultate();
-            //Serialize to session
-            return RedirectToAction(nameof(GetDigits), BS);
+            //return RedirectToAction(nameof(GetDigits), BS);
+            return View(nameof(Result), BS);
         }
 
         public IActionResult Result(Boose BS)
         {
-            return View();
+            return View(BS);
         }
 
 

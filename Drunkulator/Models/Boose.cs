@@ -11,6 +11,7 @@ namespace Drunkulator.Models
         {
             Members = members;
             Dishes = new List<Dish>();
+            Cost = 0;
             foreach (var name in dishes)
             {
                 Dishes.Add(new Dish(name, members));
@@ -21,7 +22,7 @@ namespace Drunkulator.Models
             Members = new string[0];
             Dishes = new List<Dish>();
             Dictionary<string, int> Result = new Dictionary<string, int>();
-            int Cost = 0;
+            Cost = 0;
         }
         public string[] Members { get; set; }
         public List<Dish> Dishes { get; set; }
@@ -55,6 +56,13 @@ namespace Drunkulator.Models
                 Partakers.Add(member, new Contribrution());
             }
         }
+        public Dish()
+        {
+            Name = "";
+            Cost = 0;
+            Average = 0;
+            Partakers = new Dictionary<string, Contribrution>();
+        }
         public string Name { get; set; }
         public int Cost { get; set; }
         public int Average { get; set; }
@@ -73,6 +81,12 @@ namespace Drunkulator.Models
     }
     public class Contribrution
     {
+        public Contribrution()
+        {
+            Partaiking = false;
+            Cash = 0;
+            Delta = 0;
+        }
         public bool Partaiking { get; set; }
         public int Cash { get; set; }
         public int Delta { get; set; }

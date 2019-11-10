@@ -1,7 +1,44 @@
-﻿
+﻿@model Boose
 @{
-    ViewData["Title"] = "result";
+    ViewData["Title"] = "GetDigits";
 }
 
-<h1>result</h1>
+<h1>Result</h1>
+<div class="text-center">
+    <h1 class="display-4">Resutl</h1
+        <table class="table table-sm table-bordered table-striped">
+            <caption>Enter data</caption>
+            <tr>
+                <th></th>
+                @foreach (string member in Model.Members)
+                {
+                    <th>@member</th>
+                }
+            </tr>
+            @foreach (Dish d in Model.Dishes)
+            {
+                <tr>
+                    <td>
+                        @d.Name
+                        @d.Cost
+                        @d.Average
+                    </td>
+                    @foreach (string m in Model.Members)
+                    {
+                        <td>
+                            @d.Partakers[m].Cash
+                            @d.Partakers[m].Partaiking
+                            @d.Partakers[m].Delta
+                        </td>
+                    }
+                </tr>
+            }
+        <tr>
+            @foreach (string member in Model.Members)
+            {
+                <td>@Model.Result[member]</td>
+            }
+        </tr>
+        </table>
+</div>
 
