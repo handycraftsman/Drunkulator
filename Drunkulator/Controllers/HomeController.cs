@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Drunkulator.Models;
 using Drunkulator.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Drunkulator.Controllers
 {
@@ -22,6 +23,8 @@ namespace Drunkulator.Controllers
         //private Boose BS;
         public IActionResult Index()
         {
+            ViewBag.Digits1 = new SelectList( new List<int> { 2, 3, 4, 5 });
+            ViewBag.Digits2 = new SelectList(new List<int> { 1, 2, 3, 4, 5 });
             return View(new InitialInfo());
         }
         //Получаем количество гостей и блюд

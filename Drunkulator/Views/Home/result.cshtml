@@ -3,39 +3,49 @@
     ViewData["Title"] = "GetDigits";
 }
 
-<h1>Result</h1>
 <div class="text-center">
-    <h1 class="display-4">Resutl</h1
+    <h1 class="display-4">Resutl</h1>
         <table class="table table-sm table-bordered table-striped">
-            <caption>Enter data</caption>
             <tr>
-                <th></th>
+                <th colspan="3">Dish</th>
                 @foreach (string member in Model.Members)
                 {
-                    <th>@member</th>
+                    <th colspan="3">@member</th>
+                }
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>Cost</td>
+                <td>Average</td>
+                @foreach (string member in Model.Members)
+                {
+                    <th>Get in</th>
+                    <th>Cash</th>
+                    <th>Delta</th>
                 }
             </tr>
             @foreach (Dish d in Model.Dishes)
             {
                 <tr>
-                    <td>
-                        @d.Name
-                        @d.Cost
-                        @d.Average
-                    </td>
+                        <td>@d.Name</td>
+                        <td>@d.Cost</td>
+                        <td>@d.Average</td>
                     @foreach (string m in Model.Members)
                     {
-                        <td>
-                            @d.Partakers[m].Cash
-                            @d.Partakers[m].Partaiking
-                            @d.Partakers[m].Delta
-                        </td>
+                        <td>@d.Partakers[m].Partaiking</td>
+                        <td>@d.Partakers[m].Cash</td>
+                        <td>@d.Partakers[m].Delta</td>
                     }
                 </tr>
             }
         <tr>
+            <td><b>TOTAL:</b></td>
+            <td><b> @Model.Cost</b></td>
+            <td></td>
             @foreach (string member in Model.Members)
             {
+                <td></td>
+                <td>@Model.TotalCash[member]</td>
                 <td>@Model.Result[member]</td>
             }
         </tr>

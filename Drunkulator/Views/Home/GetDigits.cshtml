@@ -3,36 +3,42 @@
     ViewData["Title"] = "GetDigits";
 }
 
-<h1>GetDigits</h1>
 <div class="text-center">
     <h1 class="display-4">Enter Data</h1>
     <form method="post" asp-controller="Home" asp-action="GetDigits_post">
 
         <table class="table table-sm table-bordered table-striped">
-            <caption>Enter data. Cost: @Model.Cost</caption>
             <tr>
                 <th></th>
                 @for (int mi = 0; mi < Model.Members.Length; mi++)
                 {
-                    <th>
-                        <input asp-for="Members[mi]" class="form-control" ReadOnly="readonly"/>
+                    <th colspan="2">
+                        <input asp-for="Members[mi]" class="form-control" ReadOnly="readonly" />
                     </th>
 
                 }
             </tr>
-            @foreach (Dish d in Model.Dishes)
+            <tr>
+                <th></th>
+                @for (int mi = 0; mi < Model.Members.Length; mi++)
+                {
+                    <th>Get in</th>
+                    <th>Cash</th>
+                }
+            </tr>
+            @for (int d = 0; d < Model.Dishes.Count; d++)
             {
                 <tr>
                     <td>
-                        <input asp-for="@d.Name" class="form-control" ReadOnly="readonly"/>
+                        <input asp-for="@Model.Dishes[d].Name" class="form-control" ReadOnly="readonly" />
                     </td>
                     @foreach (string m in Model.Members)
                     {
-                <td>
-                    <input asp-for="@d.Partakers[m].Cash" class="form-control" />
-                    <input asp-for="@d.Partakers[m].Partaiking" class="form-control" />
-                    <input asp-for="@d.Partakers[m].Delta" class="form-control" />
-                </td>
+                        <td><input asp-for="@Model.Dishes[d].Partakers[m].Partaiking" class="form-control" /></td>
+                        <td>
+                            <input asp-for="@Model.Dishes[d].Partakers[m].Cash" class="form-control" />
+                            <input asp-for="@Model.Dishes[d].Partakers[m].Delta" type="hidden" class="form-control" />
+                        </td>
                     }
                 </tr>
             }
